@@ -283,21 +283,48 @@
             </a-entity>
         </a-entity>
         </a-entity>
-        
-        <!-- Station 1: Fundamentals (Challenging - Stormy) -->
-        <a-entity id="station1" position="-80 0 0">
-            <a-box mixin="station-board" class="clickable-board" data-popup="popup-fundamentals" position="0 6 -10">
-                <a-text position="0 0 0.3" value="FUNDAMENTALS\nSTATION" align="center" color="#ECF0F1" scale="3 3 1"></a-text>
-            </a-box>
-            <!-- Station platform -->
-            <a-box position="0 -1 -10" width="25" height="2" depth="15" color="#BDC3C7"></a-box>
-            <!-- Storm effects -->
-            <a-entity id="storm1" visible="false">
-                <a-light type="point" position="0 20 0" color="#ffffff" intensity="3" 
-                         animation="property: intensity; to: 0.3; dur: 200; dir: alternate; loop: true"></a-light>
-            </a-entity>
-        </a-entity>
 
+        <!-- Tunnel Station -->
+        <a-entity id="station1" position="-80 0 0">
+        <!-- Tunnel (half cylinder rotated sideways) -->
+            <a-cylinder 
+                height="10" 
+                radius="10" 
+                theta-length="180"
+                rotation="0 0 90"
+                color="#444444" 
+                open-ended="true" 
+                side="double"
+                segments-radial="30">
+            </a-cylinder>
+            
+  
+   
+                 <!-- Station Name Text -->
+     
+         <!-- Station Name Background Board -->
+         <a-plane 
+         position="0 2.5 10.05" 
+         width="10" 
+         height="5" 
+         color="#FF0000"
+         opacity="0.9"  
+         side="double">
+            </a-plane>
+            <a-text 
+            value="Frontend Station"
+            position="0 2.5 10.10"  
+            align="center"
+            color="#ffffff" 
+            scale="5 5 3"
+            font="https://cdn.aframe.io/fonts/mozillavr.fnt"
+            side="double">
+        </a-text>
+  
+   
+            
+        </a-entity>
+  
         <!-- Station 2: C&C-1 Junction -->
         <a-entity id="station2" position="-40 0 0">
             <a-box mixin="station-board" class="clickable-board" data-popup="popup-cc1" position="0 6 -10">
