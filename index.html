@@ -203,7 +203,7 @@
         <a-entity id="train" position="-140 1 0" animation="property: position; to: 140 1 0; dur: 60000; easing: linear; loop: true">
              <!-- Title -->
         <a-text   value="The Frontend Express: A Journey from HR to IT"
-        position="0 25 0" 
+        position="0 20 0" 
         align="center" 
         color="#ffffff" 
         scale="8 8 4"
@@ -259,7 +259,7 @@
             <a-cylinder position="-21.5 2 0" radius="0.5" height="6" rotation="0 0 90" color="#555"></a-cylinder>
 
             <!--            Second Compartment      -------------->
-            <a-entity id="compartment" position="-33 0 0">
+            <a-entity id="compartment" position="-30 0 0">
                 <a-box position="0 3 0" width="15" height="6" depth="6" color="#1E90FF">
                     <a-text   position="0 1.5 3.2" 
                     value="Frontend Developers\nCompartment" 
@@ -296,51 +296,97 @@
                 open-ended="true" 
                 side="double"
                 segments-radial="30">
-            </a-cylinder>
-            
-  
-   
-                 <!-- Station Name Text -->
+            </a-cylinder>       
      
-         <!-- Station Name Background Board -->
-         <a-plane 
-         position="0 2.5 10.05" 
-         width="10" 
-         height="5" 
-         color="#FF0000"
-         opacity="0.9"  
-         side="double">
+            <!-- Station Name Background Board -->
+            <a-plane 
+                position="0 2.5 10.05" 
+                width="10" 
+                height="5" 
+                color="#FF0000"
+                opacity="0.9"  
+                side="double">
             </a-plane>
+             <!-- Station Name Text -->ss
             <a-text 
-            value="Frontend Station"
-            position="0 2.5 10.10"  
-            align="center"
-            color="#ffffff" 
-            scale="5 5 3"
-            font="https://cdn.aframe.io/fonts/mozillavr.fnt"
-            side="double">
-        </a-text>
-  
-   
-            
+                value="Frontend Station"
+                position="0 2.5 10.10"  
+                align="center"
+                color="#ffffff" 
+                scale="5 5 3"
+                font="https://cdn.aframe.io/fonts/mozillavr.fnt"
+                side="double">
+            </a-text>
         </a-entity>
   
         <!-- Station 2: C&C-1 Junction -->
         <a-entity id="station2" position="-40 0 0">
-            <a-box mixin="station-board" class="clickable-board" data-popup="popup-cc1" position="0 6 -10">
-                <a-text position="0 0 0.3" value="C&C-1\nJUNCTION" align="center" color="#ECF0F1" scale="3 3 1"></a-text>
-            </a-box>
-            <!-- Station platform -->
-            <a-box position="0 -1 -10" width="25" height="2" depth="15" color="#BDC3C7"></a-box>
-        </a-entity>
+            <!-- Tunnel (half cylinder rotated sideways) -->
+                <a-cylinder 
+                    height="10" 
+                    radius="10" 
+                    theta-length="180"
+                    rotation="0 0 90"
+                    color="#444444" 
+                    open-ended="true" 
+                    side="double"
+                    segments-radial="30">
+                </a-cylinder>       
+         
+                <!-- Station Name Background Board -->
+                <a-plane 
+                    position="0 2.5 10.05" 
+                    width="10" 
+                    height="5" 
+                    color="#FF0000"
+                    opacity="0.9"  
+                    side="double">
+                </a-plane>
+                 <!-- Station Name Text -->
+                <a-text 
+                    value="C&C-1 Junction"
+                    position="0 2.5 10.10"  
+                    align="center"
+                    color="#ffffff" 
+                    scale="5 5 3"
+                    font="https://cdn.aframe.io/fonts/mozillavr.fnt"
+                    side="double">
+                </a-text>
+            </a-entity>
 
         <!-- Station 3: JavaScript & React Crossing (Challenging - Stormy) -->
-        <a-entity id="station3" position="0 0 0">
-            <a-box mixin="station-board" class="clickable-board" data-popup="popup-js-react" position="0 6 -10">
-                <a-text position="0 0 0.3" value="JAVASCRIPT & REACT\nCROSSING" align="center" color="#ECF0F1" scale="2.5 2.5 1"></a-text>
-            </a-box>
-            <!-- Station platform -->
-            <a-box position="0 -1 -10" width="25" height="2" depth="15" color="#BDC3C7"></a-box>
+            <a-entity id="station3" position="0 0 0">
+                <!-- Tunnel (half cylinder rotated sideways) -->
+                    <a-cylinder 
+                        height="10" 
+                        radius="10" 
+                        theta-length="180"
+                        rotation="0 0 90"
+                        color="#444444" 
+                        open-ended="true" 
+                        side="double"
+                        segments-radial="30">
+                    </a-cylinder>       
+             
+                    <!-- Station Name Background Board -->
+                    <a-plane 
+                        position="0 2.5 10.05" 
+                        width="10" 
+                        height="5" 
+                        color="#FF0000"
+                        opacity="0.9"  
+                        side="double">
+                    </a-plane>
+                     <!-- Station Name Text -->
+                    <a-text 
+                        value="JavaScript & React Crossing"
+                        position="0 2.5 10.10"  
+                        align="center"
+                        color="#ffffff" 
+                        scale="4 4 3"
+                        font="https://cdn.aframe.io/fonts/mozillavr.fnt"
+                        side="double">
+                    </a-text>
             <!-- Storm effects -->
             <a-entity id="storm3" visible="false">
                 <a-light type="point" position="0 20 0" color="#ffffff" intensity="3" 
@@ -350,52 +396,184 @@
 
         <!-- Station 4: C&C-2 Junction -->
         <a-entity id="station4" position="40 0 0">
-            <a-box mixin="station-board" class="clickable-board" data-popup="popup-cc2" position="0 6 -10">
-                <a-text position="0 0 0.3" value="C&C-2\nJUNCTION" align="center" color="#ECF0F1" scale="3 3 1"></a-text>
-            </a-box>
-            <!-- Station platform -->
-            <a-box position="0 -1 -10" width="25" height="2" depth="15" color="#BDC3C7"></a-box>
+            <a-cylinder 
+            height="10" 
+            radius="10" 
+            theta-length="180"
+            rotation="0 0 90"
+            color="#444444" 
+            open-ended="true" 
+            side="double"
+            segments-radial="30">
+        </a-cylinder>       
+ 
+        <!-- Station Name Background Board -->
+        <a-plane 
+            position="0 2.5 10.05" 
+            width="10" 
+            height="5" 
+            color="#FF0000"
+            opacity="0.9"  
+            side="double">
+        </a-plane>
+         <!-- Station Name Text -->
+        <a-text 
+            value="C&C-2 Junction"
+            position="0 2.5 10.10"  
+            align="center"
+            color="#ffffff" 
+            scale="5 5 3"
+            font="https://cdn.aframe.io/fonts/mozillavr.fnt"
+            side="double">
+        </a-text> 
         </a-entity>
 
         <!-- Station 5: Backend Station -->
         <a-entity id="station5" position="80 0 0">
-            <a-box mixin="station-board" class="clickable-board" data-popup="popup-backend" position="0 6 -10">
-                <a-text position="0 0 0.3" value="BACKEND\nSTATION" align="center" color="#ECF0F1" scale="3 3 1"></a-text>
-            </a-box>
-            <!-- Station platform -->
-            <a-box position="0 -1 -10" width="25" height="2" depth="15" color="#BDC3C7"></a-box>
+
+             <!-- Tunnel (half cylinder rotated sideways) -->
+             <a-cylinder 
+             height="10" 
+             radius="10" 
+             theta-length="180"
+             rotation="0 0 90"
+             color="#444444" 
+             open-ended="true" 
+             side="double"
+             segments-radial="30">
+         </a-cylinder>       
+  
+         <!-- Station Name Background Board -->
+         <a-plane 
+             position="0 2.5 10.05" 
+             width="10" 
+             height="5" 
+             color="#FF0000"
+             opacity="0.9"  
+             side="double">
+         </a-plane>
+          <!-- Station Name Text -->
+         <a-text 
+             value="Backend Station"
+             position="0 2.5 10.10"  
+             align="center"
+             color="#ffffff" 
+             scale="5 5 3"
+             font="https://cdn.aframe.io/fonts/mozillavr.fnt"
+             side="double">
+         </a-text>
         </a-entity>
 
         <!-- Station 6: C&C-3 Junction -->
         <a-entity id="station6" position="120 0 0">
-            <a-box mixin="station-board" class="clickable-board" data-popup="popup-cc3" position="0 6 -10">
-                <a-text position="0 0 0.3" value="C&C-3\nJUNCTION" align="center" color="#ECF0F1" scale="3 3 1"></a-text>
-            </a-box>
-            <!-- Station platform -->
-            <a-box position="0 -1 -10" width="25" height="2" depth="15" color="#BDC3C7"></a-box>
+             <!-- Tunnel (half cylinder rotated sideways) -->
+             <a-cylinder 
+             height="10" 
+             radius="10" 
+             theta-length="180"
+             rotation="0 0 90"
+             color="#444444" 
+             open-ended="true" 
+             side="double"
+             segments-radial="30">
+         </a-cylinder>       
+  
+         <!-- Station Name Background Board -->
+         <a-plane 
+             position="0 2.5 10.05" 
+             width="10" 
+             height="5" 
+             color="#FF0000"
+             opacity="0.9"  
+             side="double">
+         </a-plane>
+          <!-- Station Name Text -->
+         <a-text 
+             value="C&C-3 Junction"
+             position="0 2.5 10.10"  
+             align="center"
+             color="#ffffff" 
+             scale="5 5 3"
+             font="https://cdn.aframe.io/fonts/mozillavr.fnt"
+             side="double">
+         </a-text>
         </a-entity>
 
         <!-- Station 7: Immersive Web Station -->
         <a-entity id="station7" position="160 0 0">
-            <a-box mixin="station-board" class="clickable-board" data-popup="popup-immersive" position="0 6 -10">
-                <a-text position="0 0 0.3" value="IMMERSIVE WEB\nSTATION" align="center" color="#ECF0F1" scale="2.8 2.8 1"></a-text>
-            </a-box>
-            <!-- Station platform -->
-            <a-box position="0 -1 -10" width="25" height="2" depth="15" color="#BDC3C7"></a-box>
+             <!-- Tunnel (half cylinder rotated sideways) -->
+             <a-cylinder 
+             height="10" 
+             radius="10" 
+             theta-length="180"
+             rotation="0 0 90"
+             color="#444444" 
+             open-ended="true" 
+             side="double"
+             segments-radial="30">
+         </a-cylinder>       
+  
+         <!-- Station Name Background Board -->
+         <a-plane 
+             position="0 2.5 10.05" 
+             width="10" 
+             height="5" 
+             color="#FF0000"
+             opacity="0.9"  
+             side="double">
+         </a-plane>
+          <!-- Station Name Text -->
+         <a-text 
+             value="Immersive Web Station"
+             position="0 2.5 10.10"  
+             align="center"
+             color="#ffffff" 
+             scale="4 4 3"
+             font="https://cdn.aframe.io/fonts/mozillavr.fnt"
+             side="double">
+         </a-text>
+
+
+
+
         </a-entity>
 
         <!-- Final Message Board -->
         <a-entity position="200 0 0">
-            <a-box position="0 6 0" width="15" height="8" depth="1" color="#27AE60">
-                <a-text position="0 1 0.6" value="MANY MORE\nTO COME" align="center" color="#ECF0F1" scale="3.5 3.5 1"></a-text>
-                <a-text position="0 -2 0.6" value="😊" align="center" color="#F1C40F" scale="6 6 1"></a-text>
-            </a-box>
+            <a-cylinder 
+             height="10" 
+             radius="10" 
+             theta-length="180"
+             rotation="0 0 90"
+             color="#27AE60" 
+             open-ended="true" 
+             side="double"
+             segments-radial="30">
+         </a-cylinder>       
+  
+         <!-- Station Name Background Board -->
+         <a-plane 
+             position="0 2.5 10.05" 
+             width="10" 
+             height="5" 
+             color="#444444"
+             opacity="0.9"  
+             side="double">
+         </a-plane>
+          <!-- Station Name Text -->
+         <a-text 
+             value="Many more to come"
+             position="0 2.5 10.10"  
+             align="center"
+             color="#F1C40F" 
+             scale="4 4 3"
+             font="https://cdn.aframe.io/fonts/mozillavr.fnt"
+             side="double">
+         </a-text>
         </a-entity>
-
-       
-        
+      
         <!-- Camera that follows the train -->
-        <a-entity id="cameraRig" position="-140 8 15">
+        <a-entity id="cameraRig" position="-140 10 20">
             <a-camera look-controls="pointerLockEnabled: false">
                 <a-cursor color="#FF4444" 
                          animation__click="property: scale; startEvents: click; from: 0.1 0.1 0.1; to: 1 1 1; dur: 150"
