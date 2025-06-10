@@ -67,6 +67,37 @@
     </style>
   </head>
   <body>
+    <button id="startJourneyBtn" style="
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    z-index: 999;
+    padding: 10px 20px;
+    font-size: 18px;
+    background: #2ecc71;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+  ">
+    Start Journey
+  </button>
+  <button id="restartJourneyBtn" style="
+  position: absolute;
+  top: 60px;
+  left: 20px;
+  z-index: 999;
+  padding: 10px 20px;
+  font-size: 18px;
+  background: #e74c3c;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+">
+  Restart Journey
+</button>
+
     <div class="controls">
       <div><strong>Controls:</strong></div>
       <div>• Mouse to look around</div>
@@ -327,24 +358,7 @@
         ></a-cylinder>
       </a-entity>
 
-      <!-- Train -->
-      <a-entity
-        id="train"
-        position="-140 1 0"
-        animation="property: position; to: 140 1 0; dur: 60000; easing: linear; loop: true"
-      >
-        <!-- Title -->
-        <a-text
-          value="The Frontend Express: A Journey from HR to IT"
-          position="0 20 0"
-          align="center"
-          color="#ffffff"
-          scale="8 8 4"
-          font="https://cdn.aframe.io/fonts/mozillavr.fnt"
-          side="double"
-          look-at="#cameraRig"
-        ></a-text>
-   
+    
       </a-entity>
       <!-- Tunnel Station -->
       <a-entity id="station1" position="-80 0 0">
@@ -682,9 +696,7 @@
 
       
       <!-- Camera Rig with Camera and Train -->
-      <a-entity id="cameraRig" position="-140 10 20" wasd-controls>
-        
-        <!-- Camera with cursor and raycaster -->
+      <a-entity id="cameraRig" position="-140 6 20">
         <a-camera
           look-controls="pointerLockEnabled: false"
           raycaster="objects: .station-clickable"
@@ -694,14 +706,29 @@
             animation__click="property: scale; startEvents: click; from: 0.1 0.1 0.1; to: 1 1 1; dur: 150"
           ></a-cursor>
         </a-camera>
+      
+        <!-- Train inside rig -->
         <a-entity
-        id="myTrain"
-        gltf-model="#myModel"
-        position="0 0 -12"  
-        rotation="0 180 0"
-        scale="10 10 5"
-        ></a-entity>  
-      </a-entity>  
+          id="myTrain"
+          gltf-model="#myModel"
+          position="0 0 -12"
+          rotation="0 180 0"
+          scale="8 6 4"
+        ></a-entity>
+      
+        <!-- Title text inside rig so it moves with camera -->
+        <a-text
+          id="mainTitle"
+          value="The Frontend Express: A Journey from HR to IT"
+          position="0 10 -15"
+          align="center"
+          color="#ffffff"
+          scale="8 8 4"
+          font="https://cdn.aframe.io/fonts/mozillavr.fnt"
+          side="double"
+        ></a-text>
+      </a-entity>
+      
     </a-scene>
 
     <script>
@@ -946,6 +973,38 @@
       document.querySelector("#closeBtn").addEventListener("click", () => {
         document.querySelector("#popup").setAttribute("visible", false);
       });
-    </script>
+      
+  let journeyStarted = false;
+
+  // Hide button and start movement on click
+  document.getElementById('startJourneyBtn').addEventListener('click', function () {
+    const cameraRig = document.getElementById('cameraRig');
+
+    cameraRig.setAttribute('animation', {
+      property: 'position',
+      to: '190 6 20',
+      dur: 60000,
+      easing: 'linear'
+    });
+
+    // Optionally hide the button after starting
+    // this.style.display = 'none';
+  });
+  document.getElementById('restartJourneyBtn').addEventListener('click', function () {
+    const rig = document.getElementById('cameraRig');
+
+    // Reset instantly
+    rig.removeAttribute('animation');
+    rig.setAttribute('position', '-140 6 20');
+
+    // Show Start button again
+    cameraRig.setAttribute('animation', {
+      property: 'position',
+      to: '190 6 20',
+      dur: 60000,
+      easing: 'linear'
+    });
+  });
+</script>
   </body>
 </html>
