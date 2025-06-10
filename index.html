@@ -64,15 +64,22 @@
         z-index: 999;
         font-family: Arial, sans-serif;
       }
+      .btnContainer{
+        position: absolute;
+        top: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 999;
+        display: flex;
+        gap: 20px;
+      }
     </style>
   </head>
   <body>
+    <div class="btnContainer">
     <button id="startJourneyBtn" style="
-    position: absolute;
-    top: 20px;
-    left: 20px;
-    z-index: 999;
     padding: 10px 20px;
+    margin-top: 20px;
     font-size: 18px;
     background: #2ecc71;
     color: white;
@@ -83,20 +90,20 @@
     Start Journey
   </button>
   <button id="restartJourneyBtn" style="
-  position: absolute;
-  top: 60px;
-  left: 20px;
-  z-index: 999;
   padding: 10px 20px;
-  font-size: 18px;
-  background: #e74c3c;
-  color: white;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
+  margin-top: 20px;
+    font-size: 18px;
+    background: #e74c3c;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
 ">
   Restart Journey
 </button>
+</div>
+
+
 
     <div class="controls">
       <div><strong>Controls:</strong></div>
@@ -109,7 +116,6 @@
     <div class="train-info">
       <div id="current-status">Starting journey from HR Departure...</div>
     </div>
-
     <!-- Module Info Popups -->
     <div id="popup-fundamentals" class="popup">
       <button class="close-btn" onclick="closePopup('popup-fundamentals')">
@@ -320,11 +326,11 @@
           color="#34495e"
         >
           <a-text
-            position="0 0 0.6"
+            position="0 1 0.6"
             value="HR DEPARTURE"
             align="center"
             color="#ECF0F1"
-            scale="4 4 1"
+            scale="8 8 2"
           ></a-text>
         </a-box>
         <!-- Station platform -->
@@ -356,16 +362,13 @@
           height="8"
           color="#95A5A6"
         ></a-cylinder>
-      </a-entity>
-
-    
-      </a-entity>
+      </a-entity>   
       <!-- Tunnel Station -->
       <a-entity id="station1" position="-80 0 0">
         <!-- Tunnel (half cylinder rotated sideways) -->
         <a-cylinder
-          height="5"
-          radius="15"
+          height="8"
+          radius="13"
           theta-length="180"
           rotation="0 0 90"
           color="#444444"
@@ -423,8 +426,8 @@
       <a-entity id="station2" position="-40 0 0">
         <!-- Tunnel (half cylinder rotated sideways) -->
         <a-cylinder
-          height="10"
-          radius="10"
+        height="8"
+        radius="13"
           theta-length="180"
           rotation="0 0 90"
           color="#444444"
@@ -461,8 +464,8 @@
       <a-entity id="station3" position="0 0 0">
         <!-- Tunnel (half cylinder rotated sideways) -->
         <a-cylinder
-          height="10"
-          radius="10"
+        height="8"
+        radius="13"
           theta-length="180"
           rotation="0 0 90"
           color="#444444"
@@ -509,8 +512,8 @@
       <!-- Station 4: C&C-2 Junction -->
       <a-entity id="station4" position="40 0 0">
         <a-cylinder
-          height="10"
-          radius="10"
+        height="8"
+        radius="13"
           theta-length="180"
           rotation="0 0 90"
           color="#444444"
@@ -547,8 +550,8 @@
       <a-entity id="station5" position="80 0 0">
         <!-- Tunnel (half cylinder rotated sideways) -->
         <a-cylinder
-          height="10"
-          radius="10"
+        height="8"
+        radius="13"
           theta-length="180"
           rotation="0 0 90"
           color="#444444"
@@ -585,8 +588,8 @@
       <a-entity id="station6" position="120 0 0">
         <!-- Tunnel (half cylinder rotated sideways) -->
         <a-cylinder
-          height="10"
-          radius="10"
+        height="8"
+        radius="13"
           theta-length="180"
           rotation="0 0 90"
           color="#444444"
@@ -623,8 +626,8 @@
       <a-entity id="station7" position="160 0 0">
         <!-- Tunnel (half cylinder rotated sideways) -->
         <a-cylinder
-          height="10"
-          radius="10"
+        height="8"
+        radius="13"
           theta-length="180"
           rotation="0 0 90"
           color="#444444"
@@ -660,8 +663,8 @@
       <!-- Final Message Board -->
       <a-entity position="200 0 0">
         <a-cylinder
-          height="10"
-          radius="10"
+        height="8"
+        radius="13"
           theta-length="180"
           rotation="0 0 90"
           color="#27AE60"
@@ -693,10 +696,8 @@
         >
         </a-text>
       </a-entity>
-
-      
       <!-- Camera Rig with Camera and Train -->
-      <a-entity id="cameraRig" position="-140 6 20">
+      <a-entity id="cameraRig" position="-140 6 18">
         <a-camera
           look-controls="pointerLockEnabled: false"
           raycaster="objects: .station-clickable"
@@ -722,14 +723,34 @@
           value="The Frontend Express: A Journey from HR to IT"
           position="0 10 -15"
           align="center"
-          color="#ffffff"
+          color="#FFFF00"
           scale="8 8 4"
           font="https://cdn.aframe.io/fonts/mozillavr.fnt"
           side="double"
         ></a-text>
-      </a-entity>
-      
-    </a-scene>
+        <!-- Pause Button inside cameraRig -->
+        <a-entity id="pauseBtn" position="0 -2 -4" visible="false">
+            <a-plane
+            width="2"
+            height="1"
+            color="#FFFF00"
+            class="clickable-board"
+            id="pausePlane"
+            event-set__mouseenter="scale: 1.1 1.1 1"
+            event-set__mouseleave="scale: 1 1 1"
+            >
+            </a-plane>
+            <a-text
+                id="pauseText"
+                value="Pause"
+                position="0 0 0.1"
+                align="center"
+                color="#ffffff"
+                scale="1 1 1"
+            ></a-text>
+        </a-entity> 
+    </a-entity>    
+</a-scene>
 
     <script>
       // Global variables
@@ -1005,6 +1026,7 @@
       easing: 'linear'
     });
   });
+  
 </script>
-  </body>
+</body>
 </html>
