@@ -127,9 +127,15 @@
     </div>
     <div id="station7-popup" class="station-popup">
       <h2>Immersive Web Station</h2>
-      <p>Your final destination! Here you'll learn about immersive web technologies and create engaging 3D experiences.</p>
+      <p>Here you'll learn about immersive web technologies and create engaging 3D experiences.</p>
       <button class="close-popup">Continue Journey</button>
     </div>
+    <div id="station8-popup" class="station-popup">
+      <h2>Many more to come! 🚀</h2>
+      <p>Your final destination! Here is a brigh future, awaiting for you.</p>
+      <button class="close-popup">Continue Journey</button>
+    </div>
+
 
     <a-scene
       vr-mode-ui="enabled: true"
@@ -597,6 +603,7 @@
 
       <!-- Camera Rig with Camera and Train -->
       <a-entity id="cameraRig" position="-162 6 18">
+        <a-entity id="camera" camera wasd-controls look-controls></a-entity>
         <a-camera
           look-controls="pointerLockEnabled: false"
           raycaster="objects: .clickable-button"
@@ -614,6 +621,7 @@
           position="0 0 -12"
           rotation="0 180 0"
           scale="8 6 4"
+          animation__reset="property: rotation; to: 0 180 0; dur: 0; startEvents: move-done"
         >
           <a-text
           value="Hyper Island\nExpress"
@@ -671,166 +679,155 @@
       </a-entity>
     </a-scene>
     <script>
-      // --- Restored and fixed logic ---
-      let isMoving = false;
-      let trainElement, cameraRig;
-      const stationPositions = [-80, -40, 0, 40, 80, 120, 160];
-      const stationNames = [
-        "Fundamentals Station",
-        "C&C-1 Junction",
-        "JavaScript & React Crossing",
-        "C&C-2 Junction",
-        "Backend Station",
-        "C&C-3 Junction",
-        "Immersive Web Station",
-      ];
+  let isMoving = false;
+  let trainElement, cameraRig;
+  let autoJourneyActive = false;
+  const stationPositions = [-80, -40, 0, 40, 80, 120, 160, 200];
+  const stationNames = [
+    "Fundamentals Station",
+    "C&C-1 Junction",
+    "JavaScript & React Crossing",
+    "C&C-2 Junction",
+    "Backend Station",
+    "C&C-3 Junction",
+    "Immersive Web Station",
+    "Many more to come"
+  ];
 
-      function generateTrackTies() {
-        const trackTies = document.querySelector("#track-ties");
-        for (let i = -200; i <= 240; i += 8) {
-          const tie = document.createElement("a-box");
-          tie.setAttribute("position", `${i} -1.3 0`);
-          tie.setAttribute("width", "0.8");
-          tie.setAttribute("height", "0.5");
-          tie.setAttribute("depth", "8");
-          tie.setAttribute("color", "#654321");
-          trackTies.appendChild(tie);
+  function generateTrackTies() {
+    const trackTies = document.querySelector("#track-ties");
+    for (let i = -200; i <= 240; i += 8) {
+      const tie = document.createElement("a-box");
+      tie.setAttribute("position", `${i} -1.3 0`);
+      tie.setAttribute("width", "0.8");
+      tie.setAttribute("height", "0.5");
+      tie.setAttribute("depth", "8");
+      tie.setAttribute("color", "#654321");
+      trackTies.appendChild(tie);
+    }
+  }
+
+  function showStationPopup(stationNumber) {
+    const popup = document.getElementById(`station${stationNumber}-popup`);
+    popup.style.display = 'block';
+  }
+
+  function hideStationPopup(stationNumber) {
+    const popup = document.getElementById(`station${stationNumber}-popup`);
+    popup.style.display = 'none';
+  }
+
+  function updateStatus(message) {
+    const statusElement = document.getElementById("current-status");
+    statusElement.textContent = message;
+  }
+
+  function moveTrainTo(targetX, isChallengingStation, callback) {
+    isMoving = true;
+    const currentPos = cameraRig.getAttribute("position");
+    const duration = Math.abs(targetX - currentPos.x) * 120;
+
+    if (isChallengingStation) {
+  trainElement.setAttribute("rotation", "0 180 0"); // reset orientation before shaking
+  trainElement.setAttribute(
+    "animation__shake",
+    "property: rotation; from: 0 180 3; to: 0 180 3; dur: 300; dir: alternate; loop: true"
+  );
+  updateStatus("Challenging times ahead - stay strong! 💪");
+}
+
+    cameraRig.setAttribute(
+      "animation__move",
+      `property: position; to: ${targetX} 6 18; dur: ${duration}; easing: easeInOutQuad`
+    );
+
+    setTimeout(() => {
+  cameraRig.removeAttribute("animation__move");
+  if (isChallengingStation) {
+    trainElement.removeAttribute("animation__shake");
+  }
+
+  trainElement.emit("move-done"); // resets rotation to face forward
+
+  isMoving = false;
+  if (callback) callback();
+}, duration);
+
+  }
+
+  function autoJourney(currentStation = 1) {
+  autoJourneyActive = true;
+  if (currentStation > stationPositions.length) {
+    autoJourneyActive = false;
+    updateStatus('Journey complete!');
+    return;
+  }
+
+  const stationPosition = stationPositions[currentStation - 1];
+  const isChallengingStation = currentStation === 3;
+
+  moveTrainTo(stationPosition, isChallengingStation, () => {
+    showStationPopup(currentStation);
+    updateStatus(`Stopped at ${stationNames[currentStation - 1]}`);
+
+    setTimeout(() => {
+      hideStationPopup(currentStation);
+      const nextStation = currentStation + 1;
+      if (nextStation <= stationPositions.length) {
+        updateStatus(`Moving to ${stationNames[nextStation - 1]}`);
+        autoJourney(nextStation);
+      } else {
+        updateStatus('Journey complete! Many more to come 🎉');
+        autoJourneyActive = false;
+      }
+    }, 2000);
+  });
+}
+
+
+  document.addEventListener('DOMContentLoaded', () => {
+    trainElement = document.getElementById("myTrain");
+    cameraRig = document.getElementById("cameraRig");
+    generateTrackTies();
+
+    document.querySelectorAll('.clickable-button[data-station]').forEach(button => {
+      button.addEventListener('click', (event) => {
+        if (autoJourneyActive) {
+          event.preventDefault();
+          return;
         }
-      }
+        event.stopPropagation();
+        const stationNumber = parseInt(button.getAttribute('data-station'));
+        stopAtStation(stationNumber);
+      });
+    });
 
-      function showStationPopup(stationNumber) {
-        const popup = document.getElementById(`station${stationNumber}-popup`);
-        popup.style.display = 'block';
-      }
-
-      function hideStationPopup(stationNumber) {
-        const popup = document.getElementById(`station${stationNumber}-popup`);
-        popup.style.display = 'none';
-      }
-
-      function updateStatus(message) {
-        const statusElement = document.getElementById("current-status");
-        statusElement.textContent = message;
-      }
-
-      function moveTrainTo(targetX, isChallengingStation, callback) {
-        if (isMoving) return;
-        isMoving = true;
-
-        const currentPos = trainElement.getAttribute("position");
-        const duration = Math.abs(targetX - currentPos.x) * 120; // Adjust speed
-
-        if (isChallengingStation) {
-          // Add shaking animation
-          trainElement.setAttribute(
-            "animation__shake",
-            "property: rotation; to: 0 0 3; dur: 300; dir: alternate; loop: true"
-          );
-          updateStatus("Challenging times ahead - stay strong! 💪");
-        }
-
-        // Move train
-        trainElement.setAttribute(
-          "animation__move",
-          `property: position; to: ${targetX} 1 0; dur: ${duration}; easing: easeInOutQuad`
-        );
-
-        // Move camera to follow train
-        cameraRig.setAttribute(
-          "animation__follow",
-          `property: position; to: ${targetX} 8 15; dur: ${duration}; easing: easeInOutQuad`
-        );
-
-        setTimeout(() => {
-          trainElement.removeAttribute("animation__move");
-          cameraRig.removeAttribute("animation__follow");
-          if (isChallengingStation) {
-            trainElement.removeAttribute("animation__shake");
-          }
-          isMoving = false;
-          if (callback) callback();
-        }, duration);
-      }
-
-      function stopAtStation(stationNumber) {
-        if (isMoving) return;
-        const stationPosition = stationPositions[stationNumber - 1];
-        const isChallengingStation = stationNumber === 3;
-        moveTrainTo(stationPosition, isChallengingStation, () => {
-          showStationPopup(stationNumber);
-          updateStatus(`Stopped at ${stationNames[stationNumber - 1]}`);
-        });
-      }
-
-      function continueJourney(stationNumber) {
+    document.querySelectorAll('.close-popup').forEach(button => {
+      button.addEventListener('click', () => {
+        const popup = button.closest('.station-popup');
+        const stationNumber = parseInt(popup.id.replace('station', '').replace('-popup', ''));
         hideStationPopup(stationNumber);
-        if (stationNumber < stationPositions.length) {
-          const nextStationPosition = stationPositions[stationNumber];
-          const isNextChallenging = stationNumber + 1 === 3;
-          moveTrainTo(nextStationPosition, isNextChallenging, () => {
-            updateStatus(`Moving to ${stationNames[stationNumber]}`);
-          });
-        }
-      }
-
-      document.addEventListener('DOMContentLoaded', () => {
-        trainElement = document.getElementById("myTrain");
-        cameraRig = document.getElementById("cameraRig");
-        generateTrackTies();
-
-        // Add click handlers for station buttons
-        document.querySelectorAll('.clickable-button[data-station]').forEach(button => {
-          button.addEventListener('click', (event) => {
-            event.stopPropagation();
-            const stationNumber = parseInt(button.getAttribute('data-station'));
-            stopAtStation(stationNumber);
-          });
-        });
-
-        // Add click handlers for popup close buttons
-        document.querySelectorAll('.close-popup').forEach(button => {
-          button.addEventListener('click', () => {
-            const popup = button.closest('.station-popup');
-            const stationNumber = parseInt(popup.id.replace('station', '').replace('-popup', ''));
-            continueJourney(stationNumber);
-          });
-        });
       });
+    });
 
-      AFRAME.registerComponent("journey-controls", {
-        init: function () {
-          const cameraRig = document.getElementById("cameraRig");
+    const startBtn = document.getElementById("startJourneyButton");
+    startBtn.addEventListener("click", (event) => {
+      event.stopPropagation();
+      startBtn.setAttribute("visible", false);
+      autoJourney(1);
+    });
+  });
 
-          const startJourney = () => {
-            cameraRig.setAttribute("animation", {
-              property: "position",
-              to: "190 6 20",
-              dur: 60000,
-              easing: "linear",
-            });
-          };
+  function stopAtStation(stationNumber) {
+    if (isMoving) return;
+    const stationPosition = stationPositions[stationNumber - 1];
+    const isChallengingStation = stationNumber === 3;
+    moveTrainTo(stationPosition, isChallengingStation, () => {
+      showStationPopup(stationNumber);
+      updateStatus(`Stopped at ${stationNames[stationNumber - 1]}`);
+    });
+  }
+</script>
 
-          const restartJourney = () => {
-            cameraRig.removeAttribute("animation");
-            void cameraRig.offsetWidth;
-            cameraRig.setAttribute("position", "-140 6 20");
-            setTimeout(() => {
-              startJourney();
-            }, 200);
-          };
-
-          // 3D buttons
-          const startBtn = document.getElementById("startJourneyButton");
-          startBtn.addEventListener("click", (event) => {
-            event.stopPropagation();
-            startBtn.setAttribute("visible", false);
-            startJourney();
-          });
-        },
-      });
-
-      // Attach component to scene
-      document.querySelector("a-scene").setAttribute("journey-controls", "");
-    </script>
   </body>
 </html>
