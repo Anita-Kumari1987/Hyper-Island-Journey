@@ -7,79 +7,78 @@
     <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.1/dist/aframe-extras.min.js"></script>
     <style>
-
-.controls {
-  position: fixed;
-  bottom: 20px;
-  left: 20px;
-  background: rgba(0, 0, 0, 0.8);
-  color: white;
-  padding: 20px;
-  border-radius: 10px;
-  z-index: 999;
-  font-family: Arial, sans-serif;
-}
-.controls div {
-  margin: 8px 0;
-  font-size: 16px;
-}
-.train-info {
-  position: fixed;
-  top: 20px;
-  right: 20px;
-  background: rgba(0, 0, 0, 0.8);
-  color: white;
-  padding: 15px;
-  border-radius: 10px;
-  z-index: 999;
-  font-family: Arial, sans-serif;
-}
-.btnContainer {
-  position: absolute;
-  top: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 999;
-  display: flex;
-  gap: 20px;
-}
-.station-popup {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background: rgba(0, 0, 0, 0.9);
-  color: white;
-  padding: 20px;
-  border-radius: 10px;
-  z-index: 1000;
-  font-family: Arial, sans-serif;
-  display: none;
-  max-width: 400px;
-  text-align: center;
-}
-.station-popup h2 {
-  margin-top: 0;
-  color: #2ecc71;
-}
-.station-popup p {
-  margin: 10px 0;
-  line-height: 1.5;
-}
-.close-popup {
-  background: #e74c3c;
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 5px;
-  cursor: pointer;
-  margin-top: 15px;
-  font-size: 16px;
-}
-.close-popup:hover {
-  background: #c0392b;
-}
-</style>
+      .controls {
+        position: fixed;
+        bottom: 20px;
+        left: 20px;
+        background: rgba(0, 0, 0, 0.8);
+        color: white;
+        padding: 20px;
+        border-radius: 10px;
+        z-index: 999;
+        font-family: Arial, sans-serif;
+      }
+      .controls div {
+        margin: 8px 0;
+        font-size: 16px;
+      }
+      .train-info {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        background: rgba(0, 0, 0, 0.8);
+        color: white;
+        padding: 15px;
+        border-radius: 10px;
+        z-index: 999;
+        font-family: Arial, sans-serif;
+      }
+      .btnContainer {
+        position: absolute;
+        top: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 999;
+        display: flex;
+        gap: 20px;
+      }
+      .station-popup {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background: rgba(0, 0, 0, 0.9);
+        color: white;
+        padding: 20px;
+        border-radius: 10px;
+        z-index: 1000;
+        font-family: Arial, sans-serif;
+        display: none;
+        max-width: 400px;
+        text-align: center;
+      }
+      .station-popup h2 {
+        margin-top: 0;
+        color: #2ecc71;
+      }
+      .station-popup p {
+        margin: 10px 0;
+        line-height: 1.5;
+      }
+      .close-popup {
+        background: #e74c3c;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+        margin-top: 15px;
+        font-size: 16px;
+      }
+      .close-popup:hover {
+        background: #c0392b;
+      }
+    </style>
   </head>
   <body>
     <div class="controls">
@@ -97,37 +96,58 @@
     <!-- Station Popups -->
     <div id="station1-popup" class="station-popup">
       <h2>Frontend Station</h2>
-      <p>Welcome to the Frontend Station! Here you'll learn the fundamentals of web development including HTML, CSS, and JavaScript basics.</p>
+      <p>
+        Welcome to the Frontend Station! Here you'll learn the fundamentals of
+        web development including HTML, CSS, and JavaScript basics.
+      </p>
       <button class="close-popup">Continue Journey</button>
     </div>
     <div id="station2-popup" class="station-popup">
       <h2>C&C-1 Junction</h2>
-      <p>At C&C-1 Junction, you'll explore the world of Creative Coding and learn how to create interactive experiences.</p>
+      <p>
+        At C&C-1 Junction, you'll explore the world of Creative Coding and learn
+        how to create interactive experiences.
+      </p>
       <button class="close-popup">Continue Journey</button>
     </div>
     <div id="station3-popup" class="station-popup">
       <h2>JavaScript & React Crossing</h2>
-      <p>This challenging station will test your JavaScript skills and introduce you to React, the popular frontend framework.</p>
+      <p>
+        This challenging station will test your JavaScript skills and introduce
+        you to React, the popular frontend framework.
+      </p>
       <button class="close-popup">Continue Journey</button>
     </div>
     <div id="station4-popup" class="station-popup">
       <h2>C&C-2 Junction</h2>
-      <p>Advanced Creative Coding techniques await you at this junction, where you'll learn to create more complex interactive experiences.</p>
+      <p>
+        Advanced Creative Coding techniques await you at this junction, where
+        you'll learn to create more complex interactive experiences.
+      </p>
       <button class="close-popup">Continue Journey</button>
     </div>
     <div id="station5-popup" class="station-popup">
       <h2>Backend Station</h2>
-      <p>Welcome to the Backend Station! Here you'll learn about server-side programming, databases, and API development.</p>
+      <p>
+        Welcome to the Backend Station! Here you'll learn about server-side
+        programming, databases, and API development.
+      </p>
       <button class="close-popup">Continue Journey</button>
     </div>
     <div id="station6-popup" class="station-popup">
       <h2>C&C-3 Junction</h2>
-      <p>At this final Creative Coding junction, you'll master advanced techniques and create impressive interactive projects.</p>
+      <p>
+        At this final Creative Coding junction, you'll master advanced
+        techniques and create impressive interactive projects.
+      </p>
       <button class="close-popup">Continue Journey</button>
     </div>
     <div id="station7-popup" class="station-popup">
       <h2>Immersive Web Station</h2>
-      <p>Here you'll learn about immersive web technologies and create engaging 3D experiences.</p>
+      <p>
+        Here you'll learn about immersive web technologies and create engaging
+        3D experiences.
+      </p>
       <button class="close-popup">Continue Journey</button>
     </div>
     <div id="station8-popup" class="station-popup">
@@ -135,7 +155,6 @@
       <p>Your final destination! Here is a brigh future, awaiting for you.</p>
       <button class="close-popup">Continue Journey</button>
     </div>
-
 
     <a-scene
       vr-mode-ui="enabled: true"
@@ -155,6 +174,10 @@
         >
         </a-mixin>
         <a-asset-item id="myModel" src="/assets/train3D.glb"></a-asset-item>
+        <audio
+          id="train-sound"
+          src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"
+        ></audio>
       </a-assets>
 
       <!-- Lighting -->
@@ -196,12 +219,12 @@
       <!-- HR Departure Station -->
       <a-entity position="-162 0 0">
         <a-box
-          position="0 10 -15"
+          position="0 14 -15"
           width="24"
           height="6"
           depth="1"
           color="#34495e"
-          opacity = "0.6"
+          opacity="0.6"
         >
           <a-text
             position="0 0.7 0.6"
@@ -210,7 +233,6 @@
             color="#ECF0F1"
             scale="8 8 2"
             font="https://cdn.aframe.io/fonts/mozillavr.fnt"
-            
           ></a-text>
         </a-box>
         <!-- Station platform -->
@@ -244,8 +266,7 @@
         ></a-cylinder>
       </a-entity>
       <!-- Tunnel Station -->
-      
-      
+
       <a-entity id="station1" position="-80 0 0">
         <!-- Tunnel (half cylinder rotated sideways) -->
         <a-cylinder
@@ -258,7 +279,7 @@
           side="double"
           segments-radial="30"
         ></a-cylinder>
-      
+
         <!-- Station Name Text -->
         <a-text
           value="Frontend Station"
@@ -271,25 +292,22 @@
         ></a-text>
 
         <!-- Station Button -->
-        <a-entity
-          class="clickable-button"
-          position="0 15 0"
-          data-station="1"
-        >
+        <a-entity class="clickable-button" position="0 15 0" data-station="1">
           <a-box
-            width="2"
-            height="0.5"
-            depth="0.5"
-            color="#2ecc71"
-            radius="0.1"
-          ></a-box>
-          <a-text
-            value="Stop Here"
-            align="center"
-            position="0 0 0.3"
-            color="#fff"
-            scale="1.5 1.5 1"
-          ></a-text>
+          class="clickable"
+          width="6"
+          height="2"
+          depth="0.5"
+          color="#2ecc71"
+          radius="0.1"
+        ></a-box>
+        <a-text
+          value="Stop Here"
+          align="center"
+          position="0 0 0.3"
+          color="#fff"
+          scale="4 4 1"
+        ></a-text>
         </a-entity>
       </a-entity>
 
@@ -306,7 +324,7 @@
           side="double"
           segments-radial="30"
         ></a-cylinder>
-      
+
         <!-- Station Name Text -->
         <a-text
           value="C&C-1 Junction"
@@ -319,25 +337,22 @@
         ></a-text>
 
         <!-- Station Button -->
-        <a-entity
-          class="clickable-button"
-          position="0 15 0"
-          data-station="2"
-        >
+        <a-entity class="clickable-button" position="0 15 0" data-station="2">
           <a-box
-            width="2"
-            height="0.5"
-            depth="0.5"
-            color="#2ecc71"
-            radius="0.1"
-          ></a-box>
-          <a-text
-            value="Stop Here"
-            align="center"
-            position="0 0 0.3"
-            color="#fff"
-            scale="1.5 1.5 1"
-          ></a-text>
+          class="clickable"
+          width="6"
+          height="2"
+          depth="0.5"
+          color="#2ecc71"
+          radius="0.1"
+        ></a-box>
+        <a-text
+          value="Stop Here"
+          align="center"
+          position="0 0 0.3"
+          color="#fff"
+          scale="4 4 1"
+        ></a-text>
         </a-entity>
       </a-entity>
 
@@ -353,7 +368,7 @@
           side="double"
           segments-radial="30"
         ></a-cylinder>
-      
+
         <!-- Station Name Text -->
         <a-text
           value="JavaScript & React Crossing"
@@ -366,25 +381,22 @@
         ></a-text>
 
         <!-- Station Button -->
-        <a-entity
-          class="clickable-button"
-          position="0 15 0"
-          data-station="3"
-        >
+        <a-entity class="clickable-button" position="0 15 0" data-station="3">
           <a-box
-            width="2"
-            height="0.5"
-            depth="0.5"
-            color="#2ecc71"
-            radius="0.1"
-          ></a-box>
-          <a-text
-            value="Stop Here"
-            align="center"
-            position="0 0 0.3"
-            color="#fff"
-            scale="1.5 1.5 1"
-          ></a-text>
+          class="clickable"
+          width="6"
+          height="2"
+          depth="0.5"
+          color="#2ecc71"
+          radius="0.1"
+        ></a-box>
+        <a-text
+          value="Stop Here"
+          align="center"
+          position="0 0 0.3"
+          color="#fff"
+          scale="4 4 1"
+        ></a-text>
         </a-entity>
       </a-entity>
 
@@ -400,7 +412,7 @@
           side="double"
           segments-radial="30"
         ></a-cylinder>
-      
+
         <!-- Station Name Text -->
         <a-text
           value="C&C-2 Junction"
@@ -413,25 +425,22 @@
         ></a-text>
 
         <!-- Station Button -->
-        <a-entity
-          class="clickable-button"
-          position="0 15 0"
-          data-station="4"
-        >
+        <a-entity class="clickable-button" position="0 15 0" data-station="4">
           <a-box
-            width="2"
-            height="0.5"
-            depth="0.5"
-            color="#2ecc71"
-            radius="0.1"
-          ></a-box>
-          <a-text
-            value="Stop Here"
-            align="center"
-            position="0 0 0.3"
-            color="#fff"
-            scale="1.5 1.5 1"
-          ></a-text>
+          class="clickable"
+          width="6"
+          height="2"
+          depth="0.5"
+          color="#2ecc71"
+          radius="0.1"
+        ></a-box>
+        <a-text
+          value="Stop Here"
+          align="center"
+          position="0 0 0.3"
+          color="#fff"
+          scale="4 4 1"
+        ></a-text>
         </a-entity>
       </a-entity>
 
@@ -447,7 +456,7 @@
           side="double"
           segments-radial="30"
         ></a-cylinder>
-      
+
         <!-- Station Name Text -->
         <a-text
           value="Backend Station"
@@ -460,25 +469,22 @@
         ></a-text>
 
         <!-- Station Button -->
-        <a-entity
-          class="clickable-button"
-          position="0 15 0"
-          data-station="5"
-        >
+        <a-entity class="clickable-button" position="0 15 0" data-station="5">
           <a-box
-            width="2"
-            height="0.5"
-            depth="0.5"
-            color="#2ecc71"
-            radius="0.1"
-          ></a-box>
-          <a-text
-            value="Stop Here"
-            align="center"
-            position="0 0 0.3"
-            color="#fff"
-            scale="1.5 1.5 1"
-          ></a-text>
+          class="clickable"
+          width="6"
+          height="2"
+          depth="0.5"
+          color="#2ecc71"
+          radius="0.1"
+        ></a-box>
+        <a-text
+          value="Stop Here"
+          align="center"
+          position="0 0 0.3"
+          color="#fff"
+          scale="4 4 1"
+        ></a-text>
         </a-entity>
       </a-entity>
 
@@ -494,7 +500,7 @@
           side="double"
           segments-radial="30"
         ></a-cylinder>
-      
+
         <!-- Station Name Text -->
         <a-text
           value="C&C-3 Junction"
@@ -507,25 +513,22 @@
         ></a-text>
 
         <!-- Station Button -->
-        <a-entity
-          class="clickable-button"
-          position="0 15 0"
-          data-station="6"
-        >
+        <a-entity class="clickable-button" position="0 15 0" data-station="6">
           <a-box
-            width="2"
-            height="0.5"
-            depth="0.5"
-            color="#2ecc71"
-            radius="0.1"
-          ></a-box>
-          <a-text
-            value="Stop Here"
-            align="center"
-            position="0 0 0.3"
-            color="#fff"
-            scale="1.5 1.5 1"
-          ></a-text>
+          class="clickable"
+          width="4"
+          height=""
+          depth="0.5"
+          color="#2ecc71"
+          radius="0.1"
+        ></a-box>
+        <a-text
+          value="Stop Here"
+          align="center"
+          position="0 0 0.3"
+          color="#fff"
+          scale="3 3 1"
+        ></a-text>
         </a-entity>
       </a-entity>
 
@@ -541,7 +544,7 @@
           side="double"
           segments-radial="30"
         ></a-cylinder>
-      
+
         <!-- Station Name Text -->
         <a-text
           value="Immersive Web Station"
@@ -554,65 +557,66 @@
         ></a-text>
 
         <!-- Station Button -->
-        <a-entity
-          class="clickable-button"
-          position="0 15 0"
-          data-station="7"
-        >
+        <a-entity class="clickable-button" position="0 15 0" data-station="7">
           <a-box
-            width="2"
-            height="0.5"
-            depth="0.5"
-            color="#2ecc71"
-            radius="0.1"
-          ></a-box>
-          <a-text
-            value="Stop Here"
-            align="center"
-            position="0 0 0.3"
-            color="#fff"
-            scale="1.5 1.5 1"
-          ></a-text>
+          class="clickable"
+          width="4"
+          height=""
+          depth="0.5"
+          color="#2ecc71"
+          radius="0.1"
+        ></a-box>
+        <a-text
+          value="Stop Here"
+          align="center"
+          position="0 0 0.3"
+          color="#fff"
+          scale="3 3 1"
+        ></a-text>
         </a-entity>
       </a-entity>
 
       <!-- Final Message Board -->
       <a-entity position="200 0 0">
         <a-cylinder
-        height="8"
-        radius="13"
-        theta-length="180"
-        rotation="0 0 90"
-        color="#444444"
-        open-ended="true"
-        side="double"
-        segments-radial="30"
-      ></a-cylinder>
-    
-      <!-- Station Name Text -->
-      <a-text
-        value="MANY MORE TO COME"
-        position="0 12 0.06"
-        align="center"
-        color="#FF0000"
-        scale="5 5 2"
-        font="https://cdn.aframe.io/fonts/mozillavr.fnt"
-        side="double"
-      ></a-text>
+          height="8"
+          radius="13"
+          theta-length="180"
+          rotation="0 0 90"
+          color="#444444"
+          open-ended="true"
+          side="double"
+          segments-radial="30"
+        ></a-cylinder>
+
+        <!-- Station Name Text -->
+        <a-text
+          value="MANY MORE TO COME"
+          position="0 12 0.06"
+          align="center"
+          color="#FF0000"
+          scale="5 5 2"
+          font="https://cdn.aframe.io/fonts/mozillavr.fnt"
+          side="double"
+        ></a-text>
       </a-entity>
 
       <!-- Camera Rig with Camera and Train -->
       <a-entity id="cameraRig" position="-162 6 18">
-        <a-entity id="camera" camera wasd-controls look-controls></a-entity>
-        <a-camera
+        <a-entity
+          id="camera"
+          camera
           look-controls="pointerLockEnabled: false"
-          raycaster="objects: .clickable-button"
+          raycaster="objects: .clickable"
         >
-          <a-cursor
-            color="#FF4444"
+          <a-entity
+            cursor="fuse: false; rayOrigin: mouse"
+            position="0 0 -1"
+            geometry="primitive: ring; radiusInner: 0.02; radiusOuter: 0.03"
+            material="color: #FF4444; shader: flat"
             animation__click="property: scale; startEvents: click; from: 0.1 0.1 0.1; to: 1 1 1; dur: 150"
-          ></a-cursor>
-        </a-camera>
+          ></a-entity>
+        </a-entity>
 
         <!-- Train inside rig -->
         <a-entity
@@ -624,25 +628,32 @@
           animation__reset="property: rotation; to: 0 180 0; dur: 0; startEvents: move-done"
         >
           <a-text
-          value="Hyper Island\nExpress"
-          position="-0.3 0.06 -0.5"
-          rotation="0 180 0"       
-          align="center"
-          color="#FFFF00"
-          scale="0.3 0.3 0.2"
-          font="https://cdn.aframe.io/fonts/mozillavr.fnt"
-          side="double"
-        ></a-text>
-        <a-text
-          value="Frontend\nDevelopers"
-          position="0.7 -0.15 -0.5"
-          rotation="0 180 0"       
-          align="center"
-          color="#FFFF00"
-          scale="0.3 0.3 0.2"
-          font="https://cdn.aframe.io/fonts/mozillavr.fnt"
-          side="double"
-      ></a-text>
+            value="Hyper Island\nExpress"
+            position="-0.3 0.06 -0.5"
+            rotation="0 180 0"
+            align="center"
+            color="#FFFF00"
+            scale="0.3 0.3 0.2"
+            font="https://cdn.aframe.io/fonts/mozillavr.fnt"
+            side="double"
+          ></a-text>
+          <a-text
+            value="Frontend\nDevelopers"
+            position="0.7 -0.15 -0.5"
+            rotation="0 180 0"
+            align="center"
+            color="#FFFF00"
+            scale="0.3 0.3 0.2"
+            font="https://cdn.aframe.io/fonts/mozillavr.fnt"
+            side="double"
+          ></a-text>
+          <a-sound
+            id="trainSound"
+            src="/assets/TrainSound.mp3"
+            autoplay="false"
+            loop="true"
+            volume="1"
+          ></a-sound>
         </a-entity>
 
         <!-- Title text inside rig so it moves with camera -->
@@ -657,177 +668,212 @@
           side="double"
         ></a-text>
       </a-entity>
+
       <!-- Start Buttons -->
       <a-entity
         id="startJourneyButton"
         position="-162 8 10"
         class="clickable-button"
       >
-        <a-plane
-          width="3"
-          height="0.8"
-          color="#2ecc71"
-          radius="0.1"
-        ></a-plane>
+        <a-plane width="3" height="0.8" color="#2ecc71" radius="0.1"></a-plane>
         <a-text
           value="Start Journey"
           align="center"
           position="0 0 0.1"
           color="#fff"
-          scale = "2 2 1"
+          scale="2 2 1"
         ></a-text>
       </a-entity>
     </a-scene>
     <script>
-  let isMoving = false;
-  let trainElement, cameraRig;
-  let autoJourneyActive = false;
-  const stationPositions = [-80, -40, 0, 40, 80, 120, 160, 200];
-  const stationNames = [
-    "Fundamentals Station",
-    "C&C-1 Junction",
-    "JavaScript & React Crossing",
-    "C&C-2 Junction",
-    "Backend Station",
-    "C&C-3 Junction",
-    "Immersive Web Station",
-    "Many more to come"
-  ];
+      let isMoving = false;
+      let trainElement, cameraRig, trainSound;
+      let autoJourneyActive = false;
+      let currStationNumber = 0;
+      const stationPositions = [-80, -40, 0, 40, 80, 120, 160, 200];
+      const stationNames = [
+        "Fundamentals Station",
+        "C&C-1 Junction",
+        "JavaScript & React Crossing",
+        "C&C-2 Junction",
+        "Backend Station",
+        "C&C-3 Junction",
+        "Immersive Web Station",
+        "Many more to come",
+      ];
 
-  function generateTrackTies() {
-    const trackTies = document.querySelector("#track-ties");
-    for (let i = -200; i <= 240; i += 8) {
-      const tie = document.createElement("a-box");
-      tie.setAttribute("position", `${i} -1.3 0`);
-      tie.setAttribute("width", "0.8");
-      tie.setAttribute("height", "0.5");
-      tie.setAttribute("depth", "8");
-      tie.setAttribute("color", "#654321");
-      trackTies.appendChild(tie);
-    }
-  }
-
-  function showStationPopup(stationNumber) {
-    const popup = document.getElementById(`station${stationNumber}-popup`);
-    popup.style.display = 'block';
-  }
-
-  function hideStationPopup(stationNumber) {
-    const popup = document.getElementById(`station${stationNumber}-popup`);
-    popup.style.display = 'none';
-  }
-
-  function updateStatus(message) {
-    const statusElement = document.getElementById("current-status");
-    statusElement.textContent = message;
-  }
-
-  function moveTrainTo(targetX, isChallengingStation, callback) {
-    isMoving = true;
-    const currentPos = cameraRig.getAttribute("position");
-    const duration = Math.abs(targetX - currentPos.x) * 120;
-
-    if (isChallengingStation) {
-  trainElement.setAttribute("rotation", "0 180 0"); // reset orientation before shaking
-  trainElement.setAttribute(
-    "animation__shake",
-    "property: rotation; from: 0 180 3; to: 0 180 3; dur: 300; dir: alternate; loop: true"
-  );
-  updateStatus("Challenging times ahead - stay strong! 💪");
-}
-
-    cameraRig.setAttribute(
-      "animation__move",
-      `property: position; to: ${targetX} 6 18; dur: ${duration}; easing: easeInOutQuad`
-    );
-
-    setTimeout(() => {
-  cameraRig.removeAttribute("animation__move");
-  if (isChallengingStation) {
-    trainElement.removeAttribute("animation__shake");
-  }
-
-  trainElement.emit("move-done"); // resets rotation to face forward
-
-  isMoving = false;
-  if (callback) callback();
-}, duration);
-
-  }
-
-  function autoJourney(currentStation = 1) {
-  autoJourneyActive = true;
-  if (currentStation > stationPositions.length) {
-    autoJourneyActive = false;
-    updateStatus('Journey complete!');
-    return;
-  }
-
-  const stationPosition = stationPositions[currentStation - 1];
-  const isChallengingStation = currentStation === 3;
-
-  moveTrainTo(stationPosition, isChallengingStation, () => {
-    showStationPopup(currentStation);
-    updateStatus(`Stopped at ${stationNames[currentStation - 1]}`);
-
-    setTimeout(() => {
-      hideStationPopup(currentStation);
-      const nextStation = currentStation + 1;
-      if (nextStation <= stationPositions.length) {
-        updateStatus(`Moving to ${stationNames[nextStation - 1]}`);
-        autoJourney(nextStation);
-      } else {
-        updateStatus('Journey complete! Many more to come 🎉');
-        autoJourneyActive = false;
-      }
-    }, 2000);
-  });
-}
-
-
-  document.addEventListener('DOMContentLoaded', () => {
-    trainElement = document.getElementById("myTrain");
-    cameraRig = document.getElementById("cameraRig");
-    generateTrackTies();
-
-    document.querySelectorAll('.clickable-button[data-station]').forEach(button => {
-      button.addEventListener('click', (event) => {
-        if (autoJourneyActive) {
-          event.preventDefault();
-          return;
+      function generateTrackTies() {
+        const trackTies = document.querySelector("#track-ties");
+        for (let i = -200; i <= 240; i += 8) {
+          const tie = document.createElement("a-box");
+          tie.setAttribute("position", `${i} -1.3 0`);
+          tie.setAttribute("width", "0.8");
+          tie.setAttribute("height", "0.5");
+          tie.setAttribute("depth", "8");
+          tie.setAttribute("color", "#654321");
+          trackTies.appendChild(tie);
         }
-        event.stopPropagation();
-        const stationNumber = parseInt(button.getAttribute('data-station'));
-        stopAtStation(stationNumber);
+      }
+
+      function showStationPopup(stationNumber) {
+        const popup = document.getElementById(`station${stationNumber}-popup`);
+        console.log("Trying to show popup:", popup);
+        if (popup) popup.style.display = "block";
+      }
+
+      function hideStationPopup(stationNumber) {
+        const popup = document.getElementById(`station${stationNumber}-popup`);
+        popup.style.display = "none";
+      }
+
+      function updateStatus(message) {
+        const statusElement = document.getElementById("current-status");
+        statusElement.textContent = message;
+      }
+
+      function moveTrainTo(targetX, isChallengingStation, callback) {
+        isMoving = true;
+        const currentPos = cameraRig.getAttribute("position");
+        const duration = Math.abs(targetX - currentPos.x) * 120;
+
+        if (isChallengingStation) {
+          trainElement.setAttribute("rotation", "0 180 0"); // reset orientation before shaking
+          trainElement.setAttribute(
+            "animation__shake",
+            "property: rotation; from: 0 180 3; to: 0 180 3; dur: 300; dir: alternate; loop: true"
+          );
+          updateStatus("Challenging times ahead - stay strong! 💪");
+        }
+
+        cameraRig.setAttribute(
+          "animation__move",
+          `property: position; to: ${targetX} 6 18; dur: ${duration}; easing: easeInOutQuad`
+        );
+
+        setTimeout(() => {
+          cameraRig.removeAttribute("animation__move");
+          if (isChallengingStation) {
+            trainElement.removeAttribute("animation__shake");
+          }
+
+          trainElement.emit("move-done"); // resets rotation to face forward
+
+          //if (trainSound) trainSound.components.sound.pauseSound();
+          isMoving = false;
+          if (callback) callback();
+        }, duration);
+      }
+
+      function autoJourney(currentStation = 1) {
+        autoJourneyActive = true;
+        if (currentStation > stationPositions.length) {
+          autoJourneyActive = false;
+          updateStatus("Journey complete!");
+          return;
+          if (trainSound) trainSound.components.sound.pauseSound();
+        }
+
+        const stationPosition = stationPositions[currentStation - 1];
+        const isChallengingStation = currentStation === 3;
+
+        moveTrainTo(stationPosition, isChallengingStation, () => {
+          updateStatus(`Arrived at ${stationNames[currentStation - 1]}`);
+
+          // No popup shown here anymore
+          setTimeout(() => {
+            console.log("autoJourneyActive " + autoJourneyActive);
+            console.log("currentStation " + currentStation);
+            if (!autoJourneyActive) {
+              updateStatus("Journey paused.");
+              return;
+            }
+            const nextStation = currentStation + 1;
+            if (nextStation <= stationPositions.length) {
+              updateStatus(`Moving to ${stationNames[nextStation - 1]}`);
+              if (trainSound) trainSound.components.sound.playSound();
+              autoJourney(nextStation);
+            } else {
+              updateStatus("Journey complete! Many more to come 🎉");
+              autoJourneyActive = false;
+            }
+          }, 2000);
+        });
+      }
+      function stopAtStation(stationNumber) {
+        console.log("stopAtStation called with stationNumber:", stationNumber);
+        if (isMoving) return;
+        autoJourneyActive = false;
+
+        const stationPosition = stationPositions[stationNumber - 1];
+        const isChallengingStation = stationNumber === 3;
+
+        moveTrainTo(stationPosition, isChallengingStation, () => {
+          updateStatus(`Stopped at ${stationNames[stationNumber - 1]}`);
+          showStationPopup(stationNumber);
+          pausedStation = stationNumber;
+        });
+      }
+
+      document.addEventListener("DOMContentLoaded", () => {
+        trainElement = document.getElementById("myTrain");
+        cameraRig = document.getElementById("cameraRig");
+        trainSound = document.getElementById("trainSound");
+        generateTrackTies();
+
+        document
+          .querySelectorAll(".clickable-button[data-station]")
+          .forEach((button) => {
+            button.addEventListener("click", (event) => {
+              console.log("Stop Here button clicked!");
+              // if (autoJourneyActive) {
+              //   event.preventDefault();
+              //   return;
+              // }
+              event.stopPropagation();
+              const stationNumber = parseInt(
+                button.getAttribute("data-station")
+              );
+              currStationNumber = stationNumber;
+              //stopAtStation(stationNumber);
+              //startBtn.setAttribute("visible", true);
+              //if (trainSound) trainSound.components.sound.playSound();
+              //autoJourney(0);
+              autoJourneyActive = false;
+              //isMoving = false;
+              cameraRig.removeAttribute("animation__move");
+
+              showStationPopup(stationNumber);
+            });
+          });
+
+        document.querySelectorAll(".close-popup").forEach((button) => {
+          button.addEventListener("click", () => {
+            const popup = button.closest(".station-popup");
+            const stationNumber = parseInt(
+              popup.id.replace("station", "").replace("-popup", "")
+            );
+
+            hideStationPopup(stationNumber);
+            updateStatus(
+              `Ready to continue from ${stationNames[stationNumber - 1]}`
+            );
+            autoJourneyActive = true;
+            if (trainSound) trainSound.components.sound.playSound();
+            autoJourney(currStationNumber);
+            console.log("autoJourneyActive " + autoJourneyActive);
+
+            //pausedStation = null;
+          });
+        });
+
+        const startBtn = document.getElementById("startJourneyButton");
+        startBtn.addEventListener("click", (event) => {
+          event.stopPropagation();
+          startBtn.setAttribute("visible", false);
+          if (trainSound) trainSound.components.sound.playSound();
+          autoJourney(1);
+        });
       });
-    });
-
-    document.querySelectorAll('.close-popup').forEach(button => {
-      button.addEventListener('click', () => {
-        const popup = button.closest('.station-popup');
-        const stationNumber = parseInt(popup.id.replace('station', '').replace('-popup', ''));
-        hideStationPopup(stationNumber);
-      });
-    });
-
-    const startBtn = document.getElementById("startJourneyButton");
-    startBtn.addEventListener("click", (event) => {
-      event.stopPropagation();
-      startBtn.setAttribute("visible", false);
-      autoJourney(1);
-    });
-  });
-
-  function stopAtStation(stationNumber) {
-    if (isMoving) return;
-    const stationPosition = stationPositions[stationNumber - 1];
-    const isChallengingStation = stationNumber === 3;
-    moveTrainTo(stationPosition, isChallengingStation, () => {
-      showStationPopup(stationNumber);
-      updateStatus(`Stopped at ${stationNames[stationNumber - 1]}`);
-    });
-  }
-</script>
-
+    </script>
   </body>
 </html>
